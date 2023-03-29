@@ -18,7 +18,7 @@ app.use(cors());
 app.use("/posts", postsRouter);
 
 
-// Routes
+// Run to seed local db
 app.get("/seed", (req, res) => {
   Posts.create(PostsSeed).then(posts => {
     res.redirect("/posts");
