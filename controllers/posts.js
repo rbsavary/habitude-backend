@@ -3,6 +3,15 @@ import { Posts } from "../models/index.js";
 
 const router = express.Router();
 
+router.post("/", (req, res) => {
+  const { title, image, article, tags, author, date } = req.body;
+  Posts.create({ title, image, article, tags, author, date })
+    .then(post => {
+      res.json(post);
+    })
+    .catch(err => console.log(err));
+});
+
 router.get("/", (req, res) => {
   Posts.find().then(posts => {
     res.json(posts);
