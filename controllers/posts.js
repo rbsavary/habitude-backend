@@ -30,6 +30,11 @@ router.put("/:id", (req, res) => {
     .catch(err => console.log(err));
 });
 
-
+router.delete("/:id", (req, res) => {
+  Posts.findByIdAndDelete(req.params.id).then(deleted => {
+    res.json(deleted);
+  })
+    .catch(err => console.log(err));
+})
 
 export default router;
