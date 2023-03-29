@@ -17,4 +17,19 @@ router.get("/:id", (req, res) => {
     .catch(err => console.log(err));
 });
 
+router.put("/:id", (req, res) => {
+  const { title, image, article, tags, author, date } = req.body;
+  const updatedPost = { title, image, article, tags, author, date };
+  Posts.findByIdAndUpdate({
+    _id: req.params.id
+  }, updatedPost)
+    .then(post => {
+      updatedPost._id = post._id;
+      res.json(updatedPost);
+    })
+    .catch(err => console.log(err));
+});
+
+
+
 export default router;
