@@ -2,7 +2,7 @@ import { config } from "dotenv";
 
 export default function Env() {
   const env = config({
-    path: `./.env.${process.env.NODE_ENV}` || "production"
+    path: process.env.NODE_ENV === "development" ? `./.env.${process.env.NODE_ENV}` : "production"
   });
 
   if (env.error) {
