@@ -2,16 +2,17 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 
-import Env from "./loadenv.js";
+import dotenv from "dotenv";
 import { Posts } from "./models/index.js";
 import PostsSeed from "./seed.js";
 import { posts as postsRouter } from "./controllers/index.js";
 
-const env = Env();
+dotenv.config();
 const app = express();
-const PORT = env.server.port;
+const { env } = process;
+const PORT = env.PORT;
 
-mongoose.connect(env.database.MONGODB_URI);
+mongoose.connect(env.MONGODB_URI);
 
 app.use(express.json());
 app.use(cors());
