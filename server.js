@@ -5,7 +5,10 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { Posts } from "./models/index.js";
 import PostsSeed from "./seed.js";
-import { posts as postsRouter } from "./controllers/index.js";
+import {
+  posts as postsRouter,
+  contacts as contactsRouter
+} from "./controllers/index.js";
 
 dotenv.config();
 const app = express();
@@ -17,6 +20,7 @@ mongoose.connect(env.MONGODB_URI);
 app.use(express.json());
 app.use(cors());
 app.use("/posts", postsRouter);
+app.use("/contacts", contactsRouter);
 
 
 // Run to seed local db
